@@ -25,7 +25,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            // Group Top
+            // Group: Top
             Group {
                 HStack {
                     Image(systemName: "globe")
@@ -35,7 +35,7 @@ struct ContentView: View {
                 }
             }
             
-            // Group Map
+            // Group: Map
             Group {
                 Map(position: $position) {
                     if locationManager.currentLocation != nil {
@@ -65,7 +65,7 @@ struct ContentView: View {
                 }
             }
            
-            // Group Bottom
+            // Group: Bottom
             Group {
                 HStack {
                     Button(action: {
@@ -77,14 +77,16 @@ struct ContentView: View {
                         Image(systemName: "apple.logo")
                         Text("Apple HQ")
                     })
-                    .buttonStyle(.borderedProminent)
+                    .font(.callout)
+                    .buttonStyle(.borderless)
                     Spacer()
                     LocationButton(.currentLocation) {
                         locationManager.requestLocation()
                     }
                     .font(.callout)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .symbolVariant(.fill)
+                    .foregroundColor(.blue)
+                    .tint(.white)
                 }
             }
         }
