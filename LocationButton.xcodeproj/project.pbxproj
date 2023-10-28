@@ -11,6 +11,7 @@
 		AA02EDA72AECBBAE006F3191 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02EDA62AECBBAE006F3191 /* ContentView.swift */; };
 		AA02EDA92AECBBB0006F3191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA02EDA82AECBBB0006F3191 /* Assets.xcassets */; };
 		AA02EDAC2AECBBB0006F3191 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA02EDAB2AECBBB0006F3191 /* Preview Assets.xcassets */; };
+		AA02EDB62AECD0BF006F3191 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02EDB52AECD0BF006F3191 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		AA02EDAB2AECBBB0006F3191 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA02EDB22AECBBBC006F3191 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AA02EDB32AECCF27006F3191 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AA02EDB52AECD0BF006F3191 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				AA02EDB32AECCF27006F3191 /* Info.plist */,
 				AA02EDA42AECBBAE006F3191 /* LocationButtonApp.swift */,
+				AA02EDB42AECD097006F3191 /* Models */,
 				AA02EDA62AECBBAE006F3191 /* ContentView.swift */,
 				AA02EDA82AECBBB0006F3191 /* Assets.xcassets */,
 				AA02EDAA2AECBBB0006F3191 /* Preview Content */,
@@ -69,6 +72,14 @@
 				AA02EDAB2AECBBB0006F3191 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AA02EDB42AECD097006F3191 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA02EDB52AECD0BF006F3191 /* LocationManager.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +154,7 @@
 			files = (
 				AA02EDA72AECBBAE006F3191 /* ContentView.swift in Sources */,
 				AA02EDA52AECBBAE006F3191 /* LocationButtonApp.swift in Sources */,
+				AA02EDB62AECD0BF006F3191 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
