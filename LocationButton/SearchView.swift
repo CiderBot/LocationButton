@@ -81,6 +81,10 @@ struct SearchView: View {
             
             Spacer()
         }
+        .onAppear {
+            // clear out the selected places to start
+            selectedPlaces.removeAll()
+        }
         .padding()
     }
 }

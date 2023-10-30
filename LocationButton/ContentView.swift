@@ -38,7 +38,6 @@ struct ContentView: View {
                         Text("\(visibleRegion?.center.latitude ?? 0.0) \(visibleRegion?.center.longitude ?? 0.0)")
                         Spacer()
                         Button {
-                            selectedPlaces.removeAll()
                             path.append("SearchView")
                         } label: {
                             Image(systemName: "magnifyingglass")
@@ -65,6 +64,10 @@ struct ContentView: View {
                     .onMapCameraChange { context in
                         visibleRegion = context.region
                     }
+                    .onChange(of: selectedPlaces, {
+                        // recenter map based on search results
+                        position = .automatic
+                    })
                     .onChange(of: locationManager.currentLocation, {
                         userLocation = Visibility.visible
                         withAnimation {
