@@ -13,6 +13,8 @@
 		AA02EDAC2AECBBB0006F3191 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA02EDAB2AECBBB0006F3191 /* Preview Assets.xcassets */; };
 		AA02EDB62AECD0BF006F3191 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02EDB52AECD0BF006F3191 /* LocationManager.swift */; };
 		AA02EDB82AEF7845006F3191 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02EDB72AEF7845006F3191 /* SearchView.swift */; };
+		AA02EDBA2AF02FE0006F3191 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02EDB92AF02FE0006F3191 /* Place.swift */; };
+		AA02EDBC2AF0305A006F3191 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02EDBB2AF0305A006F3191 /* PlaceViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		AA02EDB32AECCF27006F3191 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA02EDB52AECD0BF006F3191 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		AA02EDB72AEF7845006F3191 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		AA02EDB92AF02FE0006F3191 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		AA02EDBB2AF0305A006F3191 /* PlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				AA02EDB52AECD0BF006F3191 /* LocationManager.swift */,
+				AA02EDB92AF02FE0006F3191 /* Place.swift */,
+				AA02EDBB2AF0305A006F3191 /* PlaceViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -159,6 +165,8 @@
 				AA02EDA72AECBBAE006F3191 /* ContentView.swift in Sources */,
 				AA02EDA52AECBBAE006F3191 /* LocationButtonApp.swift in Sources */,
 				AA02EDB62AECD0BF006F3191 /* LocationManager.swift in Sources */,
+				AA02EDBC2AF0305A006F3191 /* PlaceViewModel.swift in Sources */,
+				AA02EDBA2AF02FE0006F3191 /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

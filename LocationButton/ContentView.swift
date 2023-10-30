@@ -23,6 +23,7 @@ struct ContentView: View {
     @State private var userLocation = Visibility.hidden
     @State private var showAppleLoc = false
     
+    @State private var selectedPlaces: [Place] = []
     @State private var path = NavigationPath()
     
     var body: some View {
@@ -54,6 +55,9 @@ struct ContentView: View {
                         if showAppleLoc {
                             Marker("", systemImage: "apple.logo", coordinate: .appleHQLoc)
                                 .tint(.blue)
+                        }
+                        ForEach(selectedPlaces) { place in
+                            Marker(place.name, coordinate: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
                         }
                     }
                     .mapStyle(.standard(elevation: .realistic))
@@ -102,7 +106,8 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { view in
                 if view == "SearchView" {
-                    SearchView()
+                    // visibleRegion should never be nil, but just in case pass in a region
+                    SearchView(searchRegion: visibleRegion ?? .appleHQReg, selectedPlaces: $selectedPlaces)
                 }
             }
         }

@@ -6,21 +6,80 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct SearchView: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var searchString = ""
+    @StateObject var placeVM = PlaceViewModel()
+    @State private var searchText = ""
+    
+    var searchRegion: MKCoordinateRegion
+    @Binding var selectedPlaces: [Place]
     
     var body: some View {
         VStack {
-            TextField("search", text: $searchString)
-                .textFieldStyle(.roundedBorder)
-                .autocorrectionDisabled()
-                .textInputAutocapitalization(.never)
-                .submitLabel(.search)
-                .onSubmit {
-                    // start search
+            HStack {
+                TextField("search", text: $searchText)
+                    .textFieldStyle(.roundedBorder)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .submitLabel(.search)
+                    .onSubmit {
+                        // start search
                 }
+                Button("Cancel") {
+                    searchText = ""
+                    placeVM.placesList = []
+                }
+                .disabled(searchText.isEmpty)
+            }
+            List(placeVM.placesList) { place in
+                HStack {
+                    Image(systemName: selectedPlaces.contains(place) ? "circle.fill" : "circle")
+                    VStack (alignment: .leading) {
+                        Text(place.name)
+                            .font(.title2)
+                        Text(place.address)
+                    }
+                }
+                .onTapGesture {
+                    if let index = selectedPlaces.firstIndex(of: place) {
+                        selectedPlaces.remove(at: index)
+                    } else {
+                        selectedPlaces.append(place)
+                    }
+                }
+            }
+            .listStyle(.plain)
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        selectedPlaces = []
+                        dismiss()
+                    }, label: {
+                        Image(systemName: "chevron.backward")
+                    })
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        dismiss()
+                    }, label: {
+                        Image(systemName: "mappin.circle")
+                        Text("Map Selected")
+                    })
+                    .disabled(selectedPlaces.count == 0)
+                }
+            }
+            .onChange(of: searchText) {
+                if searchText.isEmpty {
+                    placeVM.placesList = []
+                } else {
+                    placeVM.search(searchText: searchText, region: searchRegion)
+                }
+            }
+            
+            Spacer()
         }
         .padding()
     }
@@ -28,6 +87,6 @@ struct SearchView: View {
 
 #Preview {
     NavigationStack {
-        SearchView()
+        SearchView(searchRegion: .appleHQReg, selectedPlaces: .constant([]))
     }
 }
