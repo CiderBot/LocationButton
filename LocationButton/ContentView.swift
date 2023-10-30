@@ -38,6 +38,7 @@ struct ContentView: View {
                         Text("\(visibleRegion?.center.latitude ?? 0.0) \(visibleRegion?.center.longitude ?? 0.0)")
                         Spacer()
                         Button {
+                            selectedPlaces.removeAll()
                             path.append("SearchView")
                         } label: {
                             Image(systemName: "magnifyingglass")
@@ -107,6 +108,7 @@ struct ContentView: View {
             .navigationDestination(for: String.self) { view in
                 if view == "SearchView" {
                     // visibleRegion should never be nil, but just in case pass in a region
+                    
                     SearchView(searchRegion: visibleRegion ?? .appleHQReg, selectedPlaces: $selectedPlaces)
                 }
             }

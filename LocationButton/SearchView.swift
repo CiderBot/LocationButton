@@ -29,7 +29,7 @@ struct SearchView: View {
                 }
                 Button("Cancel") {
                     searchText = ""
-                    placeVM.placesList = []
+                    placeVM.placesList.removeAll()
                 }
                 .disabled(searchText.isEmpty)
             }
@@ -55,7 +55,7 @@ struct SearchView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        selectedPlaces = []
+                        selectedPlaces.removeAll()
                         dismiss()
                     }, label: {
                         Image(systemName: "chevron.backward")
