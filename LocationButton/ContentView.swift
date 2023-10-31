@@ -24,11 +24,13 @@ struct ContentView: View {
     @State private var showAppleLoc = false
     
     @State private var selectedPlaces: [Place] = []
+    @State private var selectedPlace: Int?
+    
     @State private var path = NavigationPath()
     
     var body: some View {
         NavigationStack(path: $path) {
-            Map(position: $position) {
+            Map(position: $position, selection: $selectedPlace) {
                 if locationManager.currentLocation != nil {
                     Marker("", systemImage: "circle.circle.fill", coordinate: locationManager.currentLocation!.coordinate)
                         .tint(.blue)
@@ -36,6 +38,10 @@ struct ContentView: View {
                 if showAppleLoc {
                     Marker("", systemImage: "apple.logo", coordinate: .appleHQLoc)
                         .tint(.blue)
+                }
+                ForEach(selectedPlaces.indices) { index in
+                    Marker(item: selectedPlaces[index].mapItem)
+                        .tag(index)
                 }
             }
             .mapStyle(.standard(elevation: .realistic))
