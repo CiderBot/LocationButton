@@ -28,7 +28,38 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            VStack {
+            Map(position: $position) {
+                if locationManager.currentLocation != nil {
+                    Marker("", systemImage: "circle.circle.fill", coordinate: locationManager.currentLocation!.coordinate)
+                        .tint(.blue)
+                }
+                if showAppleLoc {
+                    Marker("", systemImage: "apple.logo", coordinate: .appleHQLoc)
+                        .tint(.blue)
+                }
+            }
+            .mapStyle(.standard(elevation: .realistic))
+            .onMapCameraChange { context in
+                visibleRegion = context.region
+            }
+            .onChange(of: selectedPlaces, {
+                // recenter map based on search results
+                position = .automatic
+            })
+            .onChange(of: locationManager.currentLocation, {
+                userLocation = Visibility.visible
+                withAnimation {
+                    position = .region(locationManager.currentRegion)
+                }
+            })
+            .mapControls {
+                MapUserLocationButton()
+                    .mapControlVisibility(userLocation)
+                MapCompass()
+                MapScaleView()
+            }
+            // top and bottom sections
+            .safeAreaInset(edge: .top, content: {
                 HStack {
                     Image(systemName: "globe")
                         .imageScale(.large)
@@ -41,16 +72,43 @@ struct ContentView: View {
                         Image(systemName: "magnifyingglass")
                     }
                 }
+                .padding(10)
+                .background(.white)
+                .opacity(0.7)
+                .cornerRadius(10)
+                .padding()
+            })
+            .safeAreaInset(edge: .bottom, content: {
+                HStack {
+                    Button(action: {
+                        showAppleLoc = true
+                        withAnimation {
+                            position = .region(.appleHQReg)
+                        }
+                    }, label: {
+                        Image(systemName: "apple.logo")
+                        Text("Apple HQ")
+                    })
+                    .font(.callout)
+                    .buttonStyle(.borderless)
+                    Spacer()
+                    LocationButton(.currentLocation) {
+                        locationManager.requestLocation()
+                    }
+                    .font(.callout)
+                    .symbolVariant(.fill)
+                    .foregroundColor(.blue)
+                    .tint(.white)
+                }
+                .padding(10)
+                .background(.white)
+                .cornerRadius(10)
+                .padding()
+            })
+            /*VStack {
                 
                 Map(position: $position) {
-                    if locationManager.currentLocation != nil {
-                        Marker("", systemImage: "circle.circle.fill", coordinate: locationManager.currentLocation!.coordinate)
-                            .tint(.blue)
-                    }
-                    if showAppleLoc {
-                        Marker("", systemImage: "apple.logo", coordinate: .appleHQLoc)
-                            .tint(.blue)
-                    }
+                    
                     ForEach(selectedPlaces) { place in
                         Marker(place.name, coordinate: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
                     }
@@ -75,29 +133,8 @@ struct ContentView: View {
                     MapCompass()
                     MapScaleView()
                 }
-               
-                HStack {
-                    Button(action: {
-                        showAppleLoc = true
-                        withAnimation {
-                            position = .region(.appleHQReg)
-                        }
-                    }, label: {
-                        Image(systemName: "apple.logo")
-                        Text("Apple HQ")
-                    })
-                    .font(.callout)
-                    .buttonStyle(.borderless)
-                    Spacer()
-                    LocationButton(.currentLocation) {
-                        locationManager.requestLocation()
-                    }
-                    .font(.callout)
-                    .symbolVariant(.fill)
-                    .foregroundColor(.blue)
-                    .tint(.white)
-                }
-            }
+            }*/
+            // navigation stuff
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { view in
                 if view == "SearchView" {
@@ -106,7 +143,6 @@ struct ContentView: View {
                 }
             }
         }
-        .padding()
     }
 }
 

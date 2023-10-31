@@ -37,8 +37,8 @@ struct SearchView: View {
                 HStack {
                     Image(systemName: selectedPlaces.contains(place) ? "circle.fill" : "circle")
                     VStack (alignment: .leading) {
-                        Text(place.name)
-                            .font(.title2)
+                        Text(place.mapItem.name ?? "")
+                            .font(.title3)
                         Text(place.address)
                     }
                 }

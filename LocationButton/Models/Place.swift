@@ -10,14 +10,10 @@ import MapKit
 
 struct Place: Identifiable {
     let id = UUID().uuidString
-    private var mapItem: MKMapItem
+    var mapItem: MKMapItem
     
     init(mapItem: MKMapItem) {
         self.mapItem = mapItem
-    }
-    
-    var name: String {
-        self.mapItem.name ?? ""
     }
     
     var address: String {
@@ -48,14 +44,6 @@ struct Place: Identifiable {
         }
         
         return address
-    }
-    
-    var latitude: CLLocationDegrees {   // this is really a Double
-        self.mapItem.placemark.coordinate.latitude
-    }
-    
-    var longitude: CLLocationDegrees {   // this is really a Double
-        self.mapItem.placemark.coordinate.longitude
     }
 }
 
