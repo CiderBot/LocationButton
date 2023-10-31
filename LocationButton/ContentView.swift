@@ -85,61 +85,38 @@ struct ContentView: View {
                 .padding()
             })
             .safeAreaInset(edge: .bottom, content: {
-                HStack {
-                    Button(action: {
-                        showAppleLoc = true
-                        withAnimation {
-                            position = .region(.appleHQReg)
-                        }
-                    }, label: {
-                        Image(systemName: "apple.logo")
-                        Text("Apple HQ")
-                    })
-                    .font(.callout)
-                    .buttonStyle(.borderless)
-                    Spacer()
-                    LocationButton(.currentLocation) {
-                        locationManager.requestLocation()
+                VStack {
+                    if let selectedPlace {
+                        PlaceInfoView(selectedPlace: selectedPlaces[selectedPlace])
+                            .frame(height: 128)
                     }
-                    .font(.callout)
-                    .symbolVariant(.fill)
-                    .foregroundColor(.blue)
-                    .tint(.white)
+                    HStack {
+                        Button(action: {
+                            showAppleLoc = true
+                            withAnimation {
+                                position = .region(.appleHQReg)
+                            }
+                        }, label: {
+                            Image(systemName: "apple.logo")
+                            Text("Apple HQ")
+                        })
+                        .font(.callout)
+                        .buttonStyle(.borderless)
+                        Spacer()
+                        LocationButton(.currentLocation) {
+                            locationManager.requestLocation()
+                        }
+                        .font(.callout)
+                        .symbolVariant(.fill)
+                        .foregroundColor(.blue)
+                        .tint(.white)
+                    }
                 }
                 .padding(10)
                 .background(.white)
                 .cornerRadius(10)
                 .padding()
             })
-            /*VStack {
-                
-                Map(position: $position) {
-                    
-                    ForEach(selectedPlaces) { place in
-                        Marker(place.name, coordinate: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
-                    }
-                }
-                .mapStyle(.standard(elevation: .realistic))
-                .onMapCameraChange { context in
-                    visibleRegion = context.region
-                }
-                .onChange(of: selectedPlaces, {
-                    // recenter map based on search results
-                    position = .automatic
-                })
-                .onChange(of: locationManager.currentLocation, {
-                    userLocation = Visibility.visible
-                    withAnimation {
-                        position = .region(locationManager.currentRegion)
-                    }
-                })
-                .mapControls {
-                    MapUserLocationButton()
-                        .mapControlVisibility(userLocation)
-                    MapCompass()
-                    MapScaleView()
-                }
-            }*/
             // navigation stuff
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { view in

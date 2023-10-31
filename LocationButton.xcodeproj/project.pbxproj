@@ -15,6 +15,7 @@
 		AA02EDB82AEF7845006F3191 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02EDB72AEF7845006F3191 /* SearchView.swift */; };
 		AA02EDBA2AF02FE0006F3191 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02EDB92AF02FE0006F3191 /* Place.swift */; };
 		AA02EDBC2AF0305A006F3191 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02EDBB2AF0305A006F3191 /* PlaceViewModel.swift */; };
+		AA100F922AF1C1F600F7176B /* PlaceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100F912AF1C1F600F7176B /* PlaceInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		AA02EDB72AEF7845006F3191 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		AA02EDB92AF02FE0006F3191 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		AA02EDBB2AF0305A006F3191 /* PlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
+		AA100F912AF1C1F600F7176B /* PlaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				AA02EDB42AECD097006F3191 /* Models */,
 				AA02EDA62AECBBAE006F3191 /* ContentView.swift */,
 				AA02EDB72AEF7845006F3191 /* SearchView.swift */,
+				AA100F912AF1C1F600F7176B /* PlaceInfoView.swift */,
 				AA02EDA82AECBBB0006F3191 /* Assets.xcassets */,
 				AA02EDAA2AECBBB0006F3191 /* Preview Content */,
 			);
@@ -162,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA02EDB82AEF7845006F3191 /* SearchView.swift in Sources */,
+				AA100F922AF1C1F600F7176B /* PlaceInfoView.swift in Sources */,
 				AA02EDA72AECBBAE006F3191 /* ContentView.swift in Sources */,
 				AA02EDA52AECBBAE006F3191 /* LocationButtonApp.swift in Sources */,
 				AA02EDB62AECD0BF006F3191 /* LocationManager.swift in Sources */,
