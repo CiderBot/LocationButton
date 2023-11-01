@@ -24,13 +24,13 @@ struct ContentView: View {
     @State private var showAppleLoc = false
     
     @State private var selectedPlaces: [Place] = []
-    @State private var selectedPlace: Int?
+    @State private var selectedIndex: Int?
     
     @State private var path = NavigationPath()
     
     var body: some View {
         NavigationStack(path: $path) {
-            Map(position: $position, selection: $selectedPlace) {
+            Map(position: $position, selection: $selectedIndex) {
                 if locationManager.currentLocation != nil {
                     Marker("", systemImage: "circle.circle.fill", coordinate: locationManager.currentLocation!.coordinate)
                         .tint(.blue)
@@ -39,9 +39,11 @@ struct ContentView: View {
                     Marker("", systemImage: "apple.logo", coordinate: .appleHQLoc)
                         .tint(.blue)
                 }
-                ForEach(selectedPlaces.indices) { index in
-                    Marker(item: selectedPlaces[index].mapItem)
-                        .tag(index)
+                ForEach(selectedPlaces) { place in
+                    if let index = selectedPlaces.firstIndex(of: place) {
+                        Marker(item: place.mapItem)
+                            .tag(index)
+                    }
                 }
             }
             .mapStyle(.standard(elevation: .realistic))
@@ -86,8 +88,8 @@ struct ContentView: View {
             })
             .safeAreaInset(edge: .bottom, content: {
                 VStack {
-                    if let selectedPlace {
-                        PlaceInfoView(selectedPlace: selectedPlaces[selectedPlace])
+                    if let selectedIndex {
+                        PlaceInfoView(selectedPlace: selectedPlaces[selectedIndex])
                             .frame(height: 128)
                     }
                     HStack {
